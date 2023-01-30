@@ -24,3 +24,7 @@ active venv windows
 ## install packages in local
 
 ` pip install -r requirement.txt`
+
+## run fast api
+
+`uvicorn api.main:app --reload --port=9000 --host=0.0.0.0`
