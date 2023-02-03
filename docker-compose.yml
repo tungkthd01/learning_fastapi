@@ -1,0 +1,24 @@
+version: "3"
+services:
+  fast_api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./api:/api
+    command: uvicorn main:app --reload --port=9000 --host=0.0.0.0
+    ports:
+      - "9000:9000"
+
+  tbyb_mysql:
+    platform: linux/amd64
+    image: mysql:5.7
+    env_file:
+      - .env
+    # volumes:
+    #   - ./backend/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - "3306:3306"
