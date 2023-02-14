@@ -19,7 +19,7 @@ active venv windows
 
 ## Get packages with pip
 
-`pip freeze > requirement.txt`
+`pip freeze > requirements.txt`
 
 ## install packages in local
 
@@ -28,3 +28,14 @@ active venv windows
 ## run fast api
 
 `uvicorn api.main:app --reload --port=9000 --host=0.0.0.0`
+
+# Use alembic
+
+create alembic:
+`alembic init alembic`
+
+create revison alembic
+`alembic revision --autogenerate -m "create tiet_khi table" `
+
+Run create table in database
+`alembic upgrade head`

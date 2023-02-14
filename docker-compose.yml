@@ -4,6 +4,8 @@ services:
     build:
       context: ./api
       dockerfile: Dockerfile
+    depends_on:
+      - fast_sql
     env_file:
       - .env
     volumes:
@@ -12,12 +14,12 @@ services:
     ports:
       - "9000:9000"
 
-  tbyb_mysql:
+  fast_sql:
     platform: linux/amd64
     image: mysql:5.7
     env_file:
       - .env
-    # volumes:
-    #   - ./backend/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    volumes:
+      - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - "3309:3306"
