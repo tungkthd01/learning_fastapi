@@ -4,7 +4,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONBUFFERED 1
 ENV PYTHONPATH /
 
-WORKDIR /
+WORKDIR /api
 
 RUN apt update \
     && apt-get -y install gcc libmariadb-dev \
@@ -18,8 +18,8 @@ COPY /requirements.txt /requirements.txt
 RUN pip install --upgrade pip
 RUN pip install -r /requirements.txt --no-cache-dir
 
-CMD ["uvicorn", "main:app", '--reload' ,"--host", "0.0.0.0", "--port", "80"]
+CMD ["uvicorn", "main:app", '--reload' ,"--host", "0.0.0.0", "--port", "9000"]
 # RUN uvicorn main:app --reload --port=9000 --host=0.0.0.0
-COPY . .
+COPY . /api
 
 EXPOSE 9000

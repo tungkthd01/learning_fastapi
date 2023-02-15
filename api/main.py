@@ -1,8 +1,10 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Depends
 from fastapi.params import Body
 from pydantic import BaseModel
+from api.routers import routers
+import logging
 
-app = FastAPI()
+app = FastAPI(title='learning Fast API', debug=True)
 
 class Post(BaseModel):
     title: str
@@ -12,7 +14,23 @@ class Post(BaseModel):
 async def root():
     return {'message': 'reload'}
 
-@app.post('/createpost')
-def create_post(new_post: Post):
-    print("payload", new_post)
-    return {'message': new_post}
+
+async def logging_dependency(request: Request):
+    logging.info(f'{request.method} {request.url}')
+    logging.info('Params:')
+
+    for name, value in request.path_params.items():
+        logging.info(f'\t{name}: {value}')
+
+    logging.info('Headers:')
+    for name, value in request.headers.items():
+        logging.info(f'\t{name}: {value}')
+
+
+app.include_router(
+    routers.router,
+    prefix='/api-v1',
+    dependencies=[
+        Depends(logging_dependency),
+    ]
+)
