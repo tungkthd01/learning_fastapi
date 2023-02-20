@@ -34,3 +34,8 @@ app.include_router(
         Depends(logging_dependency),
     ]
 )
+
+
+import ptvsd
+ptvsd.enable_attach(address=('0.0.0.0', 9001), redirect_output=True)
+print('Attached!')

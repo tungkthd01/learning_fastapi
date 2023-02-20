@@ -13,6 +13,7 @@ services:
     command: uvicorn main:app --reload --port=9000 --host=0.0.0.0
     ports:
       - "9000:9000"
+      - "9001:9001"
 
   fast_sql:
     platform: linux/amd64
