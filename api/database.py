@@ -20,7 +20,7 @@ DATABASE: str = "mysql://%s:%s@%s/%s?charset=utf8mb4" % (
     f'{DB_HOST}:{DB_PORT}',
     DB_NAME,
 )
-
+print('DATABASE' , DATABASE)
 engine: Engine = create_engine(
     DATABASE,
     # encoding='utf-8',
