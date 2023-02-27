@@ -11,7 +11,6 @@ class User(Base):
     hashed_password = Column(String(255))
     is_active = Column(Boolean, default=True)
 
-    items = relationship("Item", back_populates="owner")
     
 class TietKhi(Base):
     __tablename__ = 'tiet_khi'

@@ -101,7 +101,7 @@ def craw_website(url):
 
             
             
-                
+       
 def craw_tiet_khi():
 
     urls = 'https://www.informatik.uni-leipzig.de/~duc/amlich/DuLieu/list.html'
@@ -115,3 +115,27 @@ def craw_tiet_khi():
     for hr in href:
         craw_website(hr)
     return weather_day
+
+# decorator function
+def star(func):
+    def inner(*args, **kwargs):
+        print('args', args)
+        print('kwargs', kwargs)
+        func(*args, **kwargs)
+        print("*" * 15)
+    return inner
+
+
+def percent(func):
+    def inner(*args, **kwargs):
+        print("%" * 15)
+        func(*args, **kwargs)
+        print("%" * 15)
+    return inner
+    
+
+@star
+def function_to_be_used(a: str,b: str, c: int):
+    print("This is inside the function !!")
+    
+function_to_be_used(a ='123',b='123333',c= 4)
